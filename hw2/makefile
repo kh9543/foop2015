@@ -1,18 +1,10 @@
-JC = javac
-.SUFFIXES: .java .class
-.java.class:
-	$(JC) -d . $*.java
-
-CLASSES = \
-	*.java
-
-default: classes
-
-classes: $(CLASSES:.java=.class)
+all: src/POOCasino.class
+src/POOCasino.class:src/POOCasino.java
+	javac -d ./src src/*.java
 
 clean:
-	$(RM) *.class
-	$(RM) -rf assignment2
+	rm src/*.class
+	rm -rf src/assignment2
 
 run:
-	java POOCasino
+	java -cp \src POOCasino
