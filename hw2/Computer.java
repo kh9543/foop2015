@@ -270,12 +270,4 @@ public class Computer {
         return isRoyalFlush;
     }
 
-    /*Debug
-    public void displayALL(){
-        System.out.println("======================");
-        for(int i = 0; i<52; i++)
-            deck[i].showCard();
-        System.out.println("");
-        System.out.println("======================");
-    }*/
 }
