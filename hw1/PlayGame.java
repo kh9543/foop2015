@@ -126,8 +126,8 @@ class Player {
 		cardNum++;
 		cardSet[cardNum-1].copyCard(c);
 		this.sortCard();
-		this.showPlayer();
 		this.dropCard();
+		this.showPlayer();
 	}
 
 	void sortCard(){
