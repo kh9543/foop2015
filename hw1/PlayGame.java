@@ -281,7 +281,7 @@ public class PlayGame {
 		System.out.println("Continue");
 		boolean bonusEnd = false;
 		boolean mWinner = false;
-		round++;
+		round--;
 		int toID = round%4;
 		int fromID = (round+1)%4;
 		while (!bonusEnd)
@@ -325,11 +325,11 @@ public class PlayGame {
 				players[toID].getCard(lostCard);
 				players[fromID].showPlayer();
 				if(players[toID].noCard() && players[fromID].noCard())
-					System.out.println("Player"+toID+" and Player "+fromID+" win");
+					System.out.println("Player"+toID+" and Player"+fromID+" win");
 				else if(players[toID].noCard())
-					System.out.println("player"+ toID+" wins");
+					System.out.println("Player"+ toID+" wins");
 				else if(players[fromID].noCard())
-					System.out.println("player"+ fromID+" wins");
+					System.out.println("Player"+ fromID+" wins");
 				round++;
 			}
 		}
