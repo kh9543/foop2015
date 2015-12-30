@@ -41,7 +41,7 @@ public class POOCasino{
             return true;
     }
     public static void main(String[] argv){
-        int nround = Integer.valueOf(argv[0]); //10
+        int nround = Integer.valueOf(argv[0]); 
         int nchips =  Integer.valueOf(argv[1]);
         int round = 0;
         int playerNum = 4;

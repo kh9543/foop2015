@@ -3,9 +3,11 @@ import java.util.*;
 
 
 public class PlayerB02705010 extends Player{
+    private final int chipsT;
     public PlayerB02705010(int chips)
     {
         super(chips);
+        chipsT = chips;
     }
     public boolean buy_insurance(Card my_open, Card dealer_open, java.util.ArrayList<Hand> current_table)
     {
@@ -80,7 +82,7 @@ public class PlayerB02705010 extends Player{
     }
     public int make_bet(java.util.ArrayList<Hand> last_table, int total_player,int my_position)
     {
-        int bet = 500;
+        int bet = (chipsT/40);
         if(this.get_chips()-bet >= 0)
             return bet;
         else
