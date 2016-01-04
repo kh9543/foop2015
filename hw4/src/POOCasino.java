@@ -40,21 +40,32 @@ public class POOCasino{
         else
             return true;
     }
-    public static void main(String[] argv){
-        int nround = Integer.valueOf(argv[0]); 
+    public static void main(String[] argv) throws Exception{
+        int nround = Integer.valueOf(argv[0]);
         int nchips =  Integer.valueOf(argv[1]);
+        String name1 = argv[2];
+        String name2 = argv[3];
+        String name3 = argv[4];
+        String name4 = argv[5];
         int round = 0;
         int playerNum = 4;
         // init player
         Player players[] = new Player[4];
+
+        /*
         PlayerB02705010 player1 = new PlayerB02705010(nchips);
-        PlayerB02705010 player2 = new PlayerB02705010(nchips);
         PlayerB02705010 player3 = new PlayerB02705010(nchips);
-        PlayerB02705010 player4 = new PlayerB02705010(nchips);
-        players[0] = player1;
-        players[1] = player2;
-        players[2] = player3;
-        players[3] = player4;
+        PlayerB02705006 player2 = new PlayerB02705006(nchips);
+        PlayerB02705006 player4 = new PlayerB02705006(nchips);
+        */
+        Class player1 = Class.forName(name1);
+        Class player2 = Class.forName(name2);
+        Class player3 = Class.forName(name3);
+        Class player4 = Class.forName(name4);
+        players[0] = (Player)player1.getDeclaredConstructor(int.class).newInstance(nchips);
+        players[1] = (Player)player2.getDeclaredConstructor(int.class).newInstance(nchips);
+        players[2] = (Player)player3.getDeclaredConstructor(int.class).newInstance(nchips);
+        players[3] = (Player)player4.getDeclaredConstructor(int.class).newInstance(nchips);
 
         while(round < nround)
         {
@@ -130,7 +141,7 @@ public class POOCasino{
                         if(players[i].buy_insurance(player_open[i].getCards().get(0),dealer_open.getCards().get(0),current_table))
                         {
                             try{
-                                players[i].decrease_chips((0.5)*bet[i]);
+                                players[i].decrease_chips((double)(int)(0.5)*bet[i]);
                                 insurance[i] = true;
                                 System.out.println("Player"+(i+1)+" bought insurance!");
                             }
@@ -141,7 +152,7 @@ public class POOCasino{
                             {
                                 System.out.println("Player"+(i+1)+": "+ex+"Can't buy insurance!");
                                 try{
-                                    players[i].increase_chips((0.5)*bet[i]);
+                                    players[i].increase_chips((double)(int)(0.5)*bet[i]);
                                 }
                                 catch(Player.NegativeException ex2){
                                     System.out.println("Player"+(i+1)+": "+ex2);
@@ -414,7 +425,7 @@ public class POOCasino{
                     if(surrender[i])
                     {
                         try{
-                            players[i].increase_chips((0.5)*bet[i]);
+                            players[i].increase_chips((double)(int)(0.5)*bet[i]);
                         }
                         catch(Player.NegativeException ex2){
                             System.out.println("Player"+(i+1)+": "+ex2);
@@ -437,7 +448,7 @@ public class POOCasino{
                             else
                             {
                                 try{
-                                    players[i].increase_chips((2.5)*bet[i]);
+                                    players[i].increase_chips((double)(int)(2.5)*bet[i]);
                                 }
                                 catch(Player.NegativeException ex2){
                                     System.out.println("Player"+(i+1)+": "+ex2);
@@ -487,10 +498,11 @@ public class POOCasino{
                             }
                         }
                         //#
+                        System.out.print("Player"+(i+1)+" - Hand: ");
                         for(int j=0; j <playerHand[i].getCards().size(); j++)
                             System.out.print(playerHand[i].getCards().get(j).getValue()+" ");
 
-                        System.out.println("Player"+(i+1)+" pts: "+playerPts);
+                        System.out.println(" Pts: "+playerPts);
 
                     }
                     if(spliting[i])
@@ -513,7 +525,7 @@ public class POOCasino{
                                 else
                                 {
                                     try{
-                                        players[i].increase_chips((2.5)*bet[i+4]);
+                                        players[i].increase_chips((double)(int)(2.5)*bet[i+4]);
                                     }
                                     catch(Player.NegativeException ex2){
                                         System.out.println("Player"+(i+1)+": "+ex2);
@@ -563,7 +575,10 @@ public class POOCasino{
                                 }
                             }
                         }
-                        System.out.println("Player"+(i+1)+" pts (Splited): "+playerPts);
+                        System.out.print("Player"+(i+1)+" - Hand: ");
+                        for(int j=0; j <playerHand[i+4].getCards().size(); j++)
+                            System.out.print(playerHand[i+4].getCards().get(j).getValue()+" ");
+                        System.out.println(" Pts: "+playerPts+" (Splited)");
                     }
                 }
             }

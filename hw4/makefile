@@ -6,4 +6,4 @@ clean:
 	rm lib/POOCasino.class
 	rm -rf lib/assignment4
 run:
-	java -cp lib POOCasino 100 200000
+	java -cp lib POOCasino 100 200000 PlayerB02705010 PlayerB02705006 PlayerB02705010 PlayerB02705006
